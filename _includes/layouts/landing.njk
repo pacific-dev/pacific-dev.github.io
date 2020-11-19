@@ -1,0 +1,204 @@
+{% from "../components/list.njk" import listItem %}
+
+<!doctype html>
+<html lang="en" 
+    domain="{{ metadata.domain }}" 
+    ga-id="{{ googleanalytics }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="{{ csp.regular | safe }}">
+    {% if isdevelopment %}
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    {% else %}
+      <link rel="icon" href="{{ '/img/favicon/favicon-192x192.png' | addHash }}" type="image/png">
+    {% endif %}
+    <meta name="theme-color" content="#4F46E5">
+    <title>{{ renderData.title or title or metadata.title | escape }}</title>
+    <meta property="og:title" content="{{ renderData.title or title or metadata.title | escape  }}">
+    {% set desc = renderData.description or description %}
+    {% if not desc %}
+      {% set desc = content | striptags | truncate(140) %}
+    {% endif %}
+    {% if desc %}
+      <meta name="description" content="{{ desc | escape  }}">
+      <meta property="og:description" content="{{ desc | escape }}">
+    {% endif %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@{{ metadata.author.twitterHandle }}">
+    <meta name="twitter:creator" content="@{{ metadata.author.twitterHandle }}">
+    {% if image %}
+      <meta property="og:image" content="{{ image | absoluteUrl(metadata.url) }}">
+    {% endif %}
+
+    <link rel="canonical" href="{{ metadata.url }}{{ canonicalUrl or page.url }}">
+
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
+
+    <link rel="preconnect" href="/" crossorigin>
+    <link rel="stylesheet" href="{{ "/css/main.css" | addHash }}"/>
+
+    <script async defer src="{{ "/js/min.js" | addHash }}"></script>
+    {% if googleanalytics %}
+      <script async defer src="{{ "/js/cached.js" | addHash }}"></script>
+    {% endif %}
+    <!-- Notably iOS UAs also contain Mac OS X -->
+    <script csp-hash>
+      if (/Mac OS X/.test(navigator.userAgent)) 
+        document
+          .documentElement
+          .classList
+          .add('apple')
+    </script>
+  </head>
+  <body>
+    <header>
+      <nav></nav>
+      <dialog id="message"></dialog>
+      {% if googleanalytics %}
+        <noscript>
+          <img src="/.netlify/functions/ga?v=1&_v=j83&t=pageview&dr=https%3A%2F%2Fno-script.com&_s=1&dh={{ metadata.domain | encodeURIComponent }}&dp={{ page.url | encodeURIComponent }}&ul=en-us&de=UTF-8&dt={{title|encodeURIComponent}}&tid={{googleanalytics}}" width="1" height="1"
+        style="display:none" alt="">
+        </noscript>
+      {% endif %}
+    </header>
+    <div class="relative bg-white overflow-hidden">
+      <div class="max-w-screen-xl mx-auto">
+        <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+          <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <polygon points="50,0 100,0 50,100 0,100"/>
+          </svg>
+          <div class="relative pt-6 px-4 sm:px-6 lg:px-8">
+            <nav class="relative flex items-center justify-between sm:h-10 lg:justify-start">
+              <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
+                <div class="flex items-center justify-between w-full md:w-auto">
+                  <a href="#" aria-label="Home">
+                    <img class="h-8 w-auto sm:h-10" src="./img/logo-icon.jpg" alt="Logo">
+                  </a>
+                </div>
+              </div>
+            </nav>
+          </div>
+
+          <main class="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+            <div class="sm:text-center lg:text-left">
+              <h1 class="mt-0">
+                <span>Design.</span>
+                <br>
+                <span>Build.</span>
+                <br>
+                <span class="bg-gradient-to-tr from-purple-400 via-pink-400 to-red-400 bg-clip-text text-fill-transparent">Compose.</span>
+              </h1>
+              <p class="mt-3 text-base text-black sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                Facilitate collaboration and communication across the intersection of design and engineering.
+                Pacific is a low-code app builder to allow product teams, marketing, and stakeholders fastly experiment. 
+              </p>
+            
+            </span>
+            <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+              <div class="rounded-md shadow">
+                <a href="#" class="w-full cursor-fire flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring ring-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+               I want it!
+              </a>
+              </div>
+              <div class="mt-3 sm:mt-0 sm:ml-3">
+                <a href="#" class="w-full cursor-raise flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium text-indigo-700 bg-indigo-100 hover:text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:ring ring-indigo focus:border-indigo-300 transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                Convince me
+              </a>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+      <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full bg-gray-100" src="./img/header.png" alt="">
+    </div>
+  </div>
+
+  <div class="relative overflow-hidden max-w-screen-xl mx-auto">
+    <div class="bg-white text-black px-16 py-24">
+      <h1 class="text-black font-bold mb-0 text-6xl">Design</h1>
+      <div class="md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+        <div>
+        <div>
+          <h2 class="mt-0">You own your design system.</h2>
+        </div>
+          <ul class="list-unstyled">
+          {{ listItem("Import Design Tokens and Variants from Figma", "text-black") }}
+          {{ listItem("Sync to keep updated UI with your new creative ideas", "text-black") }}
+          {{ listItem("Export theme configuration and use it directly in code", "text-black") }}      
+          </ul>
+        </div>
+        <div>
+          <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="./img/workshop.svg" alt="">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="relative overflow-hidden max-w-screen-xl mx-auto">
+    <div class="bg-black text-white px-16 py-24">
+      <h1 class="text-white font-bold mb-0 text-6xl">Build</h1>
+      <div class="md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+      <div>
+        <h2 class="mt-0 text-white">The code lives in your beloved IDE</h2>
+
+        <ul class="list-unstyled">
+          {{ listItem("Export pure and state-less UI components", "text-white") }}
+          {{ listItem("Code custom advanced interactions", "text-white")}}
+          {{ listItem("Focus on arhitecture, delegate the UI", "text-white")}}
+          {{ listItem("Works with any ReactNative environment", "text-white")}}
+        </ul>
+        </div>
+        <div>
+          <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="./img/build.svg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative overflow-hidden max-w-screen-xl mx-auto">
+    <div class="bg-gradient-to-tr from-purple-100 via-pink-100 to-red-100 px-16 py-24">
+      <h1 class="text-black font-bold mb-0 text-6xl">Compose</h1>
+
+      <div class="md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+      <div>
+        <h2 class="mt-0">Effortlessly connect your design with logical modules</h2>
+
+       <ul class="list-unstyled">
+          {{ listItem("Allow product team do changes without going trough whole design-code pipeline.", "text-black") }}
+          {{ listItem("Visually manage your business flows, easily experiment, and explore in our visual editor.", "text-black")}}
+          {{ listItem("Ship your ideas without writing a single line of code.", "text-black")}}
+        </ul>
+        </div>
+        <div>
+          <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="./img/compose.svg" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+    
+  <div class="relative overflow-hidden max-w-screen-xl mx-auto">
+    <div class="bg-black text-white px-16 py-24">
+      <h1 class="text-white font-bold mb-0 text-6xl">Pacific</h1>
+        <h2 class="mt-0 text-white">No bull-shift, only real code. We manage the communication and integration. You build production-ready apps, by connecting your dream team. </h2>
+        <div class="py-8">
+        <a class="flex items-center w-full border border-transparent duration-150 ease-in-out focus:outline-none focus:ring-indigo font-medium justify-center leading-6 md:px-10 md:py-4 md:text-lg px-8 py-3 text-base transition bg-indigo-600 cursor-fire focus:border-indigo-700 hover:bg-indigo-500 text-white">
+          Request beta access
+        </a>
+        </div>
+
+    </div>
+  </div>
+   <div class="relative overflow-hidden max-w-screen-xl mx-auto">
+    <div class="bg-black text-white px-16 py-8">
+      <span>© 2020 Pacific Inc. All Right Reserved.</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

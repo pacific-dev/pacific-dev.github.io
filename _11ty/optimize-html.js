@@ -26,6 +26,7 @@ const ampOptimizer = AmpOptimizer.create({
   imageBasePath: "./_site/",
   //verbose: true,
 });
+
 const PurgeCSS = require("purgecss").PurgeCSS;
 const csso = require("csso");
 
@@ -110,7 +111,7 @@ const optimizeAmp = async (rawContent, outputPath) => {
 module.exports = {
   initArguments: {},
   configFunction: async (eleventyConfig, pluginOptions = {}) => {
-    eleventyConfig.addTransform("purifyCss", purifyCss);
+    //eleventyConfig.addTransform("purifyCss", purifyCss);
     eleventyConfig.addTransform("minifyHtml", minifyHtml);
     eleventyConfig.addTransform("optimizeAmp", optimizeAmp);
   },

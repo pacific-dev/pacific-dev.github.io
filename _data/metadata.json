@@ -1,25 +1,25 @@
 {
-  "title": "Title of the website. Update me.",
-  "url": "https://update-me.com",
-  "domain": "update-me.com",
-  "description": "Description of the website. Update me.",
+  "title": "Pacific - design system and mobile app UI composer",
+  "url": "https://getpacific.dev",
+  "domain": "getpacific.dev",
+  "description": "Facilitate collaboration and communication across the intersection of design and engineering.",
   "genre": "Insert a schema.org genre",
-  "googleAnalyticsId": "GA ID. Update me",
+  "googleAnalyticsId": "",
   "feed": {
-    "subtitle": "Subtitle. Update me.",
+    "subtitle": "Pacific",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://update-me.com"
+    "id": "https://getpacific.dev"
   },
   "jsonfeed": {
     "path": "/feed/feed.json",
-    "url": "https://update-me.com/feed/feed.json"
+    "url": "https://getpacifiv.dev/feed/feed.json"
   },
   "author": {
-    "name": "Author Name. Update me.",
-    "twitterHandle": "update_me"
+    "name": "Gheorghe Pinzaru",
+    "twitterHandle": "ferossgp"
   },
   "publisher": {
-    "name": "Publisher name. Update me."
+    "name": "Pacific"
   }
 }
