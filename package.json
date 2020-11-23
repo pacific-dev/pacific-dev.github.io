@@ -12,7 +12,7 @@
     "debug": "DEBUG=* eleventy && npm run test",
     "test": "mocha test/test*.js",
     "test-watch": "mocha test/test*.js --watch",
-    "prod:postcss": "postcss css/main.css -d _site/css/ --config ./postcss.config.js",
+    "prod:postcss": "postcss css/main.css -d _site/css/ --config ./postcss.config.js --env production",
     "dev:postcss": "postcss css/main.css -d _site/css/ --config ./postcss.config.js -w"
   },
   "pre-push": [
