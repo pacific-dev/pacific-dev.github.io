@@ -39,47 +39,52 @@ const csso = require("csso");
  */
 
 const purifyCss = async (rawContent, outputPath) => {
-  let content = rawContent;
-  if (
-    outputPath &&
-    outputPath.endsWith(".html") &&
-    !isAmp(content) &&
-    !/data-style-override/.test(content)
-  ) {
-    let before = require("fs").readFileSync("css/main.css", {
-      encoding: "utf-8",
-    });
+  try {
+    let content = rawContent;
+    if (
+      outputPath &&
+      outputPath.endsWith(".html") &&
+      !isAmp(content) &&
+      !/data-style-override/.test(content)
+    ) {
+      let before = require("fs").readFileSync("./_site/css/main.css", {
+        encoding: "utf-8",
+      });
 
-    before = before.replace(/@font-face {/g, "@font-face {font-display:swap;");
+      before = before.replace(
+        /@font-face {/g,
+        "@font-face {font-display:swap;"
+      );
 
-    const purged = await new PurgeCSS().purge({
-      content: [
-        {
-          raw: rawContent,
-          extension: "html",
-        },
-      ],
-      css: [
-        {
-          raw: before,
-        },
-      ],
-      /*extractors: [
+      const purged = await new PurgeCSS().purge({
+        content: [
+          {
+            raw: rawContent,
+            extension: "html",
+          },
+        ],
+        css: [
+          {
+            raw: before,
+          },
+        ],
+        /*extractors: [
         {
           extractor: require("purge-from-html").extract,
           extensions: ["html"],
         },
       ],*/
-      fontFace: true,
-      variables: true,
-    });
+        fontFace: true,
+        variables: true,
+      });
 
-    const after = csso.minify(purged[0].css).css;
-    //console.log("CSS reduction", before.length - after.length);
+      const after = csso.minify(purged[0].css).css;
+      //console.log("CSS reduction", before.length - after.length);
 
-    content = content.replace("</head>", `<style>${after}</style></head>`);
-  }
-  return content;
+      content = content.replace("</head>", `<style>${after}</style></head>`);
+    }
+    return content;
+  } catch (_) {}
 };
 
 const minifyHtml = (rawContent, outputPath) => {
