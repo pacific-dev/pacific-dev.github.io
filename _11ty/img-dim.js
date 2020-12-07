@@ -118,7 +118,7 @@ const dimImages = async (rawContent, outputPath) => {
 
   if (outputPath && outputPath.endsWith(".html")) {
     const dom = new JSDOM(content);
-    const images = [...dom.window.document.querySelectorAll("img,amp-img")];
+    const images = [...dom.window.document.querySelectorAll("img:not([data-skip='true']),amp-img")];
 
     if (images.length > 0) {
       await Promise.all(images.map((i) => processImage(i, outputPath)));
