@@ -11,12 +11,10 @@ jobs:
         with:
           node-version: '14.x'
       - run: npm install
-      - run: NODE_ENV=production
       - run: npm run build --if-present
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v1.1.0
         env:
-          NODE_ENV: production
           PUBLISH_DIR: _site 
           PUBLISH_BRANCH: gh-pages
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

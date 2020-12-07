@@ -4,7 +4,7 @@
   "domain": "getpacific.dev",
   "description": "Facilitate collaboration and communication across the intersection of design and engineering.",
   "genre": "Insert a schema.org genre",
-  "googleAnalyticsId": "",
+  "googleAnalyticsId": "UA-184886449-2",
   "feed": {
     "subtitle": "Pacific",
     "filename": "feed.xml",
