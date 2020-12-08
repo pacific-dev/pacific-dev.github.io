@@ -42,6 +42,7 @@ const CSP = {
     // Images may also come from data-URIs.
     ["img-src", SELF, "data:"],
 
+    ["connect-src", SELF, "www.google-analytics.com"]
     // To add new rules, add new array literals here or extend those above with
     // additional allowed elements.
     // Example for allowing YouTube iframe embeds
