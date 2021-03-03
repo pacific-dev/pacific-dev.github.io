@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Pacific - design system and mobile app UI composer</title>
+	<subtitle>Pacific</subtitle>
+	
+	<link href="https://getpacific.dev/feed/feed.xml" rel="self"/>
+	<link href="https://getpacific.dev"/>
+	<updated>2020-11-21T00:00:00+00:00</updated>
+	<id>https://getpacific.dev</id>
+	<author>
+		<name>Gheorghe Pinzaru</name>
+		<email></email>
+	</author>
+	
+	<entry>
+		<title>Pacivic - Design Build Compose</title>
+		<link href="https://getpacific.dev/posts/intro/"/>
+		<updated>2020-11-21T00:00:00+00:00</updated>
+		<id>https://getpacific.dev/posts/intro/</id>
+		<content type="html">
+		  
+		</content>
+	</entry>
+</feed>

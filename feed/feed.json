@@ -1,0 +1,19 @@
+{
+  "version": "https://jsonfeed.org/version/1",
+  "title": "Pacific - design system and mobile app UI composer",
+  "home_page_url": "https://getpacific.dev",
+  "feed_url": "https://getpacifiv.dev/feed/feed.json",
+  "description": "Facilitate collaboration and communication across the intersection of design and engineering.",
+  "author": {
+    "name": "Gheorghe Pinzaru",
+    "url": ""
+  },
+  "items": [{
+      "id": "https://getpacific.dev/posts/intro/",
+      "url": "https://getpacific.dev/posts/intro/",
+      "title": "Pacivic - Design Build Compose",
+      "content_html": "",
+      "date_published": "2020-11-21T00:00:00+00:00"
+    }
+  ]
+}
